@@ -13,6 +13,15 @@ bower install angular-line-breaks
 usage
 -----
 
+Make sure you include the module in your application config
+
+```
+angular.module('myApp', [
+  'lineBreaks',
+  ...
+]);
+```
+
 Set up your model
 ```
 $scope.modelValue = "This is some text\nwith\n line\nbreaks.\n\nCool huh?";
