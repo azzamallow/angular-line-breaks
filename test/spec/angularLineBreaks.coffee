@@ -1,8 +1,8 @@
 'use strict'
 
-describe 'Directive: angularLineBreaks', ->
+describe 'Directive: lineBreaks', ->
 
-  beforeEach module 'angularLineBreaks'
+  beforeEach module 'lineBreaks'
 
   scope = {}
 
@@ -10,6 +10,8 @@ describe 'Directive: angularLineBreaks', ->
     scope = $rootScope.$new()
 
   it 'should make hidden element visible', inject ($compile) ->
-    element = angular.element '<angular-line-breaks></angular-line-breaks>'
+    element = angular.element '<p ng-model="myModel" line-breaks></p>'
     element = $compile(element) scope
-    expect(element.text()).toBe 'this is the angularLineBreaks directive'
+    scope.myModel = "This is some text\nwith\n line\nbreaks.\n\nCool huh?\n"
+    scope.$digest()
+    expect(element.html()).toBe 'This is some text<br>with<br> line<br>breaks.<br><br>Cool huh?<br>&nbsp;'
