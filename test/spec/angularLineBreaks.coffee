@@ -15,3 +15,9 @@ describe 'Directive: lineBreaks', ->
     scope.myModel = "This is some text\nwith\n line\nbreaks.\n\nCool huh?\n"
     scope.$digest()
     expect(element.html()).toBe 'This is some text<br>with<br> line<br>breaks.<br><br>Cool huh?<br>&nbsp;'
+
+  it 'should do nothing if there is no model value', inject ($compile) ->
+    element = angular.element '<p ng-model="myModel" line-breaks></p>'
+    element = $compile(element) scope
+    scope.$digest()
+    expect(element.html()).toBe ''
